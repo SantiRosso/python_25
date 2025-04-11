@@ -104,3 +104,61 @@ if denominador != 0:
     print(f"El resultado de la división es: {resultado}")
 else:
     print("Error: No se puede dividir por 0.")
+
+# Desafíos:
+
+# 1. Escribe un programa que solicite tres lados de un triángulo e indique si es
+# equilátero, isósceles o escaleno.
+
+lado1 = float(input("Ingrese el primer lado: "))
+lado2 = float(input("Ingrese el segundo lado: "))
+lado3 = float(input("Ingrese el tercer lado: "))
+
+if lado1 == lado2 == lado3:
+    print("El triángulo es equilátero")
+elif lado1 == lado2 or lado1 == lado3 or lado2 == lado3:
+    print("El triángulo es isósceles")
+else:
+    print("El triángulo es escaleno")
+
+# 2. Escribe un programa que solicite al usuario que ingrese una contraseña y confirme
+#  la contraseña. El programa debe verificar si ambas contraseñas coinciden y no
+#  están vacías.
+
+contrasena1 = input("Ingrese una contraseña: ")
+contrasena2 = input("Confirme la contraseña: ")
+
+if contrasena1 and contrasena2 and contrasena1 == contrasena2:
+    print("Las contraseñas coinciden")
+else:
+    print("Error: Las contraseñas no coinciden o están vacías")
+
+
+# 3. Escribe un programa que solicite al usuario el precio y la cantidad de un producto.
+#  Clasifique el producto como "caro" si el precio es mayor de $100 o si la cantidad es
+#  menor que 10 y el precio es mayor de $50. De lo contrario, clasifíquelo como
+#  "barato". Incluye condiciones para manejar valores falsos (0 o vacío).
+
+precio = float(input("Ingrese el precio del producto: "))
+cantidad = int(input("Ingrese la cantidad del producto: "))
+
+if precio > 0 and cantidad > 0:
+    if precio > 100 or (cantidad < 10 and precio > 50):
+        print("El producto es caro")
+    else:
+        print("El producto es barato")
+else:
+    print("Error: El precio o la cantidad no pueden ser 0 ni negativos")
+
+
+# 4. Escribe un programa que solicite al usuario su nombre, edad y número de teléfono.
+#  Verifica que ninguno de estos datos esté vacío o sea un valor falso (por ejemplo, 0).
+
+nombre = input("Ingrese su nombre: ")
+edad = input("Ingrese su edad: ")
+telefono = input("Ingrese su número de teléfono: ")
+
+if nombre and edad.isdigit() and int(edad) > 0 and telefono:
+    print("Datos ingresados correctamente")
+else:
+    print("Error: Verifique que ningún campo esté vacío o tenga un valor inválido")
