@@ -180,7 +180,42 @@ print(torre_y_alfil(7, 6, 4, 3))  # Alfil captura
 print(torre_y_alfil(3, 4, 7, 4))  # Torre captura
 print(torre_y_alfil(3, 3, 8, 5))  # Ninguna captura
 
-# 11. Tenis. Simulación de un torneo de tenis con 8 jugadores.
+# 11. Piedra papel tijera.
+def determinar_ganador(j1, j2):
+    if j1 == j2:
+        return 0  # Empate
+    elif (j1 == "tijera" and j2 == "papel") or \
+         (j1 == "papel" and j2 == "piedra") or \
+         (j1 == "piedra" and j2 == "tijera"):
+        return 1  # Gana jugador A
+    else:
+        return 2  # Gana jugador B
+
+# Marcadores 
+puntos_A = 0
+puntos_B = 0
+
+while puntos_A < 3 and puntos_B < 3:
+    jugada_A = input("A: ").lower()
+    jugada_B = input("B: ").lower()
+
+    ganador = determinar_ganador(jugada_A, jugada_B)
+
+    if ganador == 1:
+        puntos_A += 1
+    elif ganador == 2:
+        puntos_B += 1
+
+    print(f"{puntos_A} - {puntos_B}")
+
+# Resultado final
+if puntos_A == 3:
+    print("A es el ganador")
+else:
+    print("B es el ganador")
+
+
+# 12. Tenis. Simulación de un torneo de tenis con 8 jugadores.
 # Paso 1: Cargar jugadores
 jugadores = []
 for i in range(8):
@@ -208,3 +243,13 @@ while len(jugadores) > 1:
 
 # Campeón
 print(f"\nCampeón: {jugadores[0]}")
+
+# 13. Cuántos países en común. Función para contar cuántos países tienen en común dos personas.
+paises = {
+    'Pepito': {'Chile', 'Argentina'},
+    'Yayita': {'Francia', 'Suiza', 'Chile'},
+    'John': {'Chile', 'Italia', 'Francia', 'Peru'},
+}
+
+def cuantos_en_comun(a, b):
+    return len(paises[a] & paises[b])  # Intersección de conjuntos
