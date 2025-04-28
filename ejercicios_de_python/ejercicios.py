@@ -221,3 +221,180 @@ for letra in texto:
         contador_vocales += 1
 
 print(f"El número de vocales es: {contador_vocales}")
+
+# Desafíos: Estructura de datos:
+
+# Lista inicial
+amigos = ['Ana', 'Monica', 'José', 'Camila', 'Raquel', 'Matías']
+
+# 1. Devuelve la posición (índice) del amigo "Matías"
+indice_matias = amigos.index('Matías')
+print(f"Índice de Matías: {indice_matias}")
+
+# 2. Añade los amigos de la infancia "Ivana" y "Andrés" como otra lista
+amigos_infancia = ['Ivana', 'Andrés']
+amigos.extend(amigos_infancia)
+print(f"Lista con amigos de la infancia: {amigos}")
+
+# 3. Agrega un nuevo amigo "María" y devuelve el número de amigos
+amigos.append('María')
+cantidad_amigos = len(amigos)
+print(f"Número de amigos después de agregar a María: {cantidad_amigos}")
+
+# 4. Elimina el último elemento amigo y devuelve su nombre
+amigo_eliminado = amigos.pop()
+print(f"Amigo eliminado: {amigo_eliminado}")
+
+# 5. Devuelve un arreglo ordenado alfabéticamente
+amigos_ordenados = sorted(amigos)
+print(f"Lista ordenada alfabéticamente: {amigos_ordenados}")
+
+# Ejercicios extra
+
+# 1. Lista desordenada ordenada ascendente y descendente
+
+numeros = [5, 1, 9, 3, 7]
+print("Lista original:", numeros)
+
+# Orden ascendente
+numeros_asc = sorted(numeros)
+print("Orden ascendente:", numeros_asc)
+
+# Orden descendente
+numeros_desc = sorted(numeros, reverse=True)
+print("Orden descendente:", numeros_desc)
+
+# 2. Lista que cuenta las veces que aparece un número ingresado
+
+numeros = [1, 2, 3, 4, 5, 3, 2, 3, 4]
+num_usuario = int(input("Ingresa un número: "))
+
+veces = numeros.count(num_usuario)
+print(f"El número {num_usuario} aparece {veces} veces en la lista.")
+
+# 3. Tupla con tres colores favoritos e imprimir el segundo
+
+colores = ('azul', 'rojo', 'verde')
+print(f"El segundo color es: {colores[1]}")
+
+# 4. Tupla de números y verificar si un número existe
+
+numeros = (10, 20, 30, 40, 50)
+num_usuario = int(input("Ingresa un número: "))
+
+if num_usuario in numeros:
+    print("El número existe en la tupla.")
+else:
+    print("El número NO existe en la tupla.")
+
+# 5. Programa para administrar el inventario de una tienda
+
+inventario = {}
+
+def mostrar_inventario():
+    for producto, cantidad in inventario.items():
+        print(f"{producto}: {cantidad}")
+
+def agregar_producto(producto, cantidad):
+    inventario[producto] = cantidad
+
+def actualizar_producto(producto, cantidad):
+    if producto in inventario:
+        inventario[producto] += cantidad
+    else:
+        print("El producto no existe.")
+
+# Ejemplo de uso:
+agregar_producto('manzanas', 10)
+agregar_producto('bananas', 5)
+actualizar_producto('manzanas', 5)
+mostrar_inventario()
+
+# 6. Programa para registrar calificaciones de estudiantes
+
+calificaciones = {}
+
+def agregar_estudiante(nombre, notas):
+    calificaciones[nombre] = notas
+
+def actualizar_calificaciones(nombre, notas):
+    if nombre in calificaciones:
+        calificaciones[nombre].extend(notas)
+    else:
+        print("Estudiante no encontrado.")
+
+def promedio_estudiante(nombre):
+    if nombre in calificaciones:
+        promedio = sum(calificaciones[nombre]) / len(calificaciones[nombre])
+        print(f"El promedio de {nombre} es {promedio:.2f}")
+    else:
+        print("Estudiante no encontrado.")
+
+# Ejemplo de uso:
+agregar_estudiante('Juan', [8, 9, 10])
+actualizar_calificaciones('Juan', [7])
+promedio_estudiante('Juan')
+
+# FUNCIONES
+
+# 1. Función que recibe un nombre y devuelve un saludo personalizado
+def saludar_usuario(nombre):
+    """Devuelve un saludo personalizado."""
+    if not nombre:
+        return "Hola, desconocido."
+    return f"¡Hola, {nombre}! Bienvenido."
+
+# Ejemplo de uso
+#print(saludar_usuario("Ana"))
+
+# 2. Función que calcule el factorial de un número
+def calcular_factorial(numero):
+    """Calcula el factorial de un número entero no negativo."""
+    if numero < 0:
+        return "Error: el factorial no está definido para números negativos."
+    
+    factorial = 1
+    for i in range(1, numero + 1):
+        factorial *= i
+    return factorial
+
+# Ejemplo de uso
+#print(calcular_factorial(5))  # Resultado: 120
+
+# 3. Función que recibe una lista de números y devuelve el promedio
+def calcular_promedio(lista_numeros):
+    """Calcula el promedio de una lista de números."""
+    if not lista_numeros:
+        return "Error: la lista está vacía."
+    
+    suma = sum(lista_numeros)
+    cantidad = len(lista_numeros)
+    return suma / cantidad
+
+# Ejemplo de uso
+#print(calcular_promedio([7, 8, 9]))  # Resultado: 8.0
+
+# 4. Funciones para conversión entre número entero y binario
+
+# 4. 1. Entero a binario
+
+def convertir_a_binario(numero):
+    """Convierte un número entero no negativo a binario."""
+    if numero < 0:
+        return "Error: solo se aceptan números enteros no negativos."
+    return bin(numero)[2:]
+
+# Ejemplo de uso
+#print(convertir_a_binario(10))  # Resultado: '1010'
+
+#4. 2. Binario a entero
+
+def convertir_a_entero(binario):
+    """Convierte una cadena binaria a su valor entero."""
+    try:
+        return int(binario, 2)
+    except ValueError:
+        return "Error: valor binario inválido."
+
+# Ejemplo de uso
+#print(convertir_a_entero('1010'))  # Resultado: 10
