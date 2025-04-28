@@ -283,3 +283,104 @@ print(determinar_signo((1990, 5, 7)))   # tauro
 print(determinar_signo((1904, 11, 24))) # sagitario
 print(determinar_signo((1999, 12, 29))) # capricornio
 print(determinar_signo((1999, 1, 11)))  # capricornio
+
+# 15. Libros. Funciones para obtener información sobre libros y autores.
+
+# Datos
+libros = [
+    ('Papelucho programador', 'Marcela Paz', 1983),
+    ('Don Python de la Mancha', 'Miguel de Cervantes', 1615),
+    ('Raw_input y Julieta', 'William Shakespeare', 1597),
+    ('La tuplamorfosis', 'Franz Kafka', 1915),
+]
+
+autores = {
+    'William Shakespeare': ((1564, 4, 26), (1616, 5, 3), 'inglés'),
+    'Franz Kafka': ((1883, 7, 3), (1924, 6, 3), 'alemán'),
+    'Marcela Paz': ((1902, 2, 28), (1985, 6, 12), 'español'),
+    'Miguel de Cervantes': ((1547, 9, 29), (1616, 4, 22), 'español'),
+}
+
+# Funciones
+def obtener_autor(titulo):
+    for libro, autor, anio in libros:
+        if libro == titulo:
+            return autor
+    return None
+
+def obtener_idioma(titulo):
+    autor = obtener_autor(titulo)
+    if autor:
+        return autores[autor][2]
+    return None
+
+def calcular_annos_antes_de_morir(titulo):
+    autor = obtener_autor(titulo)
+    if autor:
+        anio_libro = next(anio for libro, autor_libro, anio in libros if libro == titulo)
+        anio_muerte = autores[autor][1][0]
+        return anio_muerte - anio_libro
+    return None
+
+titulo = input('Ingrese título del libro: ')
+print('El libro fue escrito en', obtener_idioma(titulo))
+print('por', obtener_autor(titulo))
+print('El autor falleció', calcular_annos_antes_de_morir(titulo), 'años')
+print('después de haber escrito el libro')
+
+# 16. Código Morse. Funciones para codificar y decodificar texto a código Morse y viceversa.
+
+# Diccionario de traducción
+morse_dict = {
+    'A': '.-',     'B': '-...',   'C': '-.-.',   'D': '-..',    'E': '.', 
+    'F': '..-.',   'G': '--.',    'H': '....',   'I': '..',     'J': '.---', 
+    'K': '-.-',    'L': '.-..',   'M': '--',     'N': '-.',     'O': '---', 
+    'P': '.--.',   'Q': '--.-',   'R': '.-.',    'S': '...',    'T': '-', 
+    'U': '..-',    'V': '...-',   'W': '.--',    'X': '-..-',   'Y': '-.--', 
+    'Z': '--..',
+    '0': '-----',  '1': '.----',  '2': '..---',  '3': '...--',  '4': '....-', 
+    '5': '.....',  '6': '-....',  '7': '--...',  '8': '---..',  '9': '----.',
+    '.': '.-.-.-', ',': '--..--', '?': '..--..', "'": '.----.', '!': '-.-.--',
+    '/': '-..-.',  '(': '-.--.',  ')': '-.--.-', '&': '.-...',  ':': '---...',
+    ';': '-.-.-.', '=': '-...-',  '+': '.-.-.',  '-': '-....-', '_': '..--.-',
+    '"': '.-..-.', '$': '...-..-', '@': '.--.-.', ' ': ''
+}
+
+# Invertimos el diccionario para decodificar Morse
+inv_morse_dict = {v: k for k, v in morse_dict.items()}
+
+def texto_a_morse(texto):
+    texto = texto.upper()
+    morse = ''
+    for letra in texto:
+        if letra != ' ':
+            morse += morse_dict.get(letra, '') + ' '
+        else:
+            morse += '  '  # Dos espacios entre palabras
+    return morse.strip()
+
+def morse_a_texto(morse):
+    palabras = morse.split('  ')  # Separar palabras
+    texto = ''
+    for palabra in palabras:
+        letras = palabra.split()
+        for letra in letras:
+            texto += inv_morse_dict.get(letra, '')
+        texto += ' '
+    return texto.strip()
+
+def detectar_tipo(texto):
+    if all(c in ['.', '-', ' '] for c in texto):
+        return 'morse'
+    else:
+        return 'texto'
+
+# Programa principal
+entrada = input("Ingrese texto o código Morse: ")
+
+tipo = detectar_tipo(entrada)
+
+if tipo == 'texto':
+    print("Texto a Morse:", texto_a_morse(entrada))
+else:
+    print("Morse a Texto:", morse_a_texto(entrada))
